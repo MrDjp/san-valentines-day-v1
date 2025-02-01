@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/lotus-pattern.png');
+            background-color: #f8c8dc;
+            background-size: contain;
+            background-repeat: repeat;
+        }
+        h1, h2 {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.5em;
+            color: #b22222;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+        }
+        #noBtn {
+            position: relative;
+        }
+        #secondQuestion {
+            display: none;
+        }
+        #message {
+            font-size: 24px;
+            margin-top: 20px;
+            display: none;
+        }
+        #bigImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Quieres ser mi San Valentín preciosa?</h1>
+    
+    <img src="imagen_principal.jpg" alt="Imagen romántica" width="300">
+    
+    <div id="firstQuestion">
+        <button onclick="showSecondQuestion(); launchConfetti('¡Me haces muy feliz! ❤️')">Sí</button>
+        <button id="noBtn" onclick="moveNoButton()">No</button>
+    </div>
+    
+    <div id="secondQuestion">
+        <h2>¿En serio?!!!</h2>
+        <button onclick="showBigImage(); launchConfetti('¡Me haces MUY feliz! ❤️❤️')">Sí</button>
+        <button onclick="alert('Oh... 😢')">No</button>
+        <br>
+        <textarea id="expressYourself" rows="4" cols="30" placeholder="A ver, exprésate uu"></textarea>
+    </div>
+    
+    <p id="message"></p>
+    <img id="bigImage" src="imagen_grande.jpg" alt="Imagen grande de amor">
+    
+    <script>
+        let noClickCount = 0;
+
+        function showSecondQuestion() {
+            document.getElementById('firstQuestion').style.display = 'none';
+            document.getElementById('secondQuestion').style.display = 'block';
+        }
+
+        function moveNoButton() {
+            noClickCount++;
+            if (noClickCount > 3) {
+                let noBtn = document.getElementById('noBtn');
+                let randomX = Math.random() * (window.innerWidth - 100);
+                let randomY = Math.random() * (window.innerHeight - 100);
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = randomX + 'px';
+                noBtn.style.top = randomY + 'px';
+            }
+        }
+
+        function launchConfetti(message) {
+            document.getElementById('message').textContent = message;
+            document.getElementById('message').style.display = 'block';
+            confetti();
+        }
+
+        function showBigImage() {
+            document.getElementById('bigImage').style.display = 'block';
+        }
+        
+        function hideBigImage() {
+            document.getElementById('bigImage').style.display = 'none';
+        }
+
+        function confetti() {
+            const duration = 2 * 1000;
+            const end = Date.now() + duration;
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.2"></script>
+</body>
+</html>
