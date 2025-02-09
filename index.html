@@ -72,10 +72,12 @@
         <button onclick="alert('Oh... 😢')">No</button>
         <br>
         <textarea id="expressYourself" rows="4" cols="30" placeholder="A ver, exprésate uu"></textarea>
+        <br>
+        <button onclick="saveResponse()">Guardar respuesta</button>
     </div>
     
     <p id="message"></p>
-    <img id="bigImage" src="imagen_grande.jpg" alt="Imagen grande de amor">
+    <img id="bigImage" src="imagen_grande.jpg" alt="Imagen grande de amor" onclick="hideBigImage()">
     
     <script>
         let noClickCount = 0;
