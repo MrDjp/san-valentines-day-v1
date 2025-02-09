@@ -125,21 +125,22 @@
                 }
             }());
         }
+
         function saveResponse() {
-    const response = document.getElementById('expressYourself').value;
-    if (response.trim() !== "") {
-        fetch(https://script.google.com/macros/s/AKfycbxkOcmyaXCb2CKiZEVBb9cEk4IdM5a26eFKjdaT6LSI18DvkqpaeN6t6ySaavPoiZOC/exec, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mensaje: response })
-        })
-        .then(response => response.text())
-        .then(data => alert("¡Respuesta guardada!"))
-        .catch(error => alert("Error al guardar la respuesta"));
-    } else {
-        alert("Por favor, escribe algo antes de guardar.");
-    }
-}
+            const response = document.getElementById('expressYourself').value;
+            if (response.trim() !== "") {
+                fetch("https://script.google.com/macros/s/AKfycbxSCItB7OCYWb5B6CUsGZz8ZMC8l9SYCtodi1vgukLgkQfv4unrGdTdssIKhoikVsm2/exec", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mensaje: response })
+                })
+                .then(response => response.text())
+                .then(data => alert("¡Respuesta guardada en Google Sheets! 🎉"))
+                .catch(error => alert("Error al guardar la respuesta: " + error));
+            } else {
+                alert("Por favor, escribe algo antes de guardar.");
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.2"></script>
 </body>
